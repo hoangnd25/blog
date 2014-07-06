@@ -1,0 +1,270 @@
+{% extends 'MopaBootstrapBundle::base_less.html.twig' %}
+
+{% block html_tag %}
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js {% block html_class %}{% endblock html_class %}" lang="en" data-classic-layout="false" data-mobile-only-classic-layout="true" data-inAnimation="fadeInUp" data-outAnimation="fadeOutDownBig"> <!--<![endif]-->
+
+{# make your site working offline with Application Cache (AppCache)
+   http://www.html5rocks.com/en/tutorials/appcache/beginner/
+<html manifest="manifest.appcache"> #}
+{% endblock html_tag %}
+
+{% block head %}
+    <head>
+        {# TODO: meta variable format, associative array or underscored string type #}
+        <meta charset="utf-8" />
+
+        {# About DNS prefetching: http://html5boilerplate.com/docs/DNS-Prefetching/
+           If you fetch data from other domains, add them too #}
+        {% block dns_prefetch %}
+            {% if dns_prefetch is defined %}
+                {% for domain in dns_prefetch %}
+                    <link rel="dns-prefetch" href="{{ domain }}" />
+                {% endfor %}
+            {% endif %}
+        {% endblock dns_prefetch %}
+
+        {# IE10 does not support plugins, such as Flash, in Metro Mode.
+           If your site requires plugins, you can let users know that via the
+           X-UA-Compatible meta element, which will prompt them to switch to Desktop Mode.
+           http://html5boilerplate.com/docs/html-head/#prompt-users-to-switch-to-desktop-mode-in-ie10-metro
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1,requiresActiveX=true"> #}
+        <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
+
+        {# WARNING: do not add "initial-scale=1" to viewport, breaks iOS view!
+           https://github.com/h5bp/html5-boilerplate/issues/824 #}
+        <meta name="viewport" content="width=device-width" />
+
+        {% set meta_robots = '' %}
+        {% set metatitle = '' %}
+        {% if meta is defined %}
+            {% if meta.description is defined %}
+                <meta name="description" content="{{ meta['description'] }}" />
+            {% endif %}
+            {% if meta.keywords is defined %}
+                <meta name="keywords" content="{{ meta['keywords'] }}" />
+            {% endif %}
+            {% if meta.author_name is defined %}
+                <meta name="author" content="{{ meta['author_name'] }}" />
+            {% endif %}
+            {% if meta.author_url is defined and meta.author_name is defined %}
+                {# example: href="/humans.txt" #}
+                <link rel="author" href="{{ meta['author_url'] }}" title="{{ meta['author_name'] }}" />
+            {% endif %}
+            {% if meta.title is defined %}
+                {% set metatitle = meta.title %}
+            {% endif %}
+
+            {# TODO: to be removed as HTML5 has no such tag
+            <meta name="title" content="{{ meta_title|default('') }}"> #}
+
+            {# TODO: read more about canonical urls and then decide whether enable this part or remove
+               http://html5boilerplate.com/docs/html-head/#canonical-url
+            <link rel="canonical" href=""> #}
+
+            {# TODO: Official short link, poorly supported now
+            <link rel="shortlink" href="h5bp.com"> #}
+
+            <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+            <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}" />
+
+            {# TODO: allow BOTs see SITEMAP #}
+            {% if meta['sitemap'] is defined %}
+                <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ meta['sitemap'] }}" />
+            {% endif %}
+
+            {# TODO: Feeds RSS & ATOM #}
+            {% if meta['feed_atom'] is defined %}
+                <link rel="alternate" type="application/atom+xml" title="Atom" href="{{ meta['feed_atom'] }}" />
+            {% endif %}
+            {% if meta['feed_rss'] is defined %}
+                <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ meta['feed_rss'] }}" />
+            {% endif %}
+
+            {# TODO: allow changing this values from controller scope #}
+            {% if meta['noindex'] %}
+                {% set meta_robots = 'noindex,' %}
+            {% endif %}
+            {% if meta['nofollow'] %}
+                {% set meta_robots = meta_robots ~ 'nofollow' %}
+            {% else %}
+                {% set meta_robots = meta_robots ~ 'follow' %}
+            {% endif %}
+        {% endif %}
+
+        <meta name="robots" content="{{ meta_robots }}" />
+        <title>{% block title%}{{ metatitle }}{% endblock %}</title>
+
+        {% if google['wt'] is defined %}
+            <meta name="google-site-verification" content="{{ google['wt'] }}" />
+        {% endif %}
+
+        {# TODO: Pingbacks http://html5boilerplate.com/docs/html-head/#pingbacks #}
+
+        {# TODO: Site Search Browser plugin:
+           http://www.google.com/search?ie=UTF-8&q=how+to+make+browser+search+plugin
+        <link rel="search" title="" type="application/opensearchdescription+xml" href=""> #}
+
+        {# Override this block to add your own files! #}
+        {% block head_style %}
+
+            {% stylesheets
+            '@AppMainBundle/Resources/public/css/print.css'
+            filter='less'
+            %}
+            <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="print" />
+            {% endstylesheets %}
+
+            {% stylesheets
+            '@AppMainBundle/Resources/public/css/normalize.css'
+            '@MopaBootstrapBundle/Resources/public/less/mopabootstrapbundle-fa4.less'
+            '@AppMainBundle/Resources/public/css/nprogress.css'
+            '@AppMainBundle/Resources/public/css/animate.css'
+            '@AppMainBundle/Resources/public/css/fontello.css'
+            '@AppMainBundle/Resources/public/css/jquery.fancybox-1.3.4.css'
+            '@AppMainBundle/Resources/public/css/uniform.default.css'
+            '@AppMainBundle/Resources/public/css/flexslider.css'
+            '@AppMainBundle/Resources/public/css/tooltipster.css'
+            '@AppMainBundle/Resources/public/css/style.css'
+            '@AppMainBundle/Resources/public/css/main.css'
+            filter='less'
+            %}
+            <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
+            {% endstylesheets %}
+
+            {% javascripts
+                '@AppMainBundle/Resources/public/js/html5shiv.js'
+                '@AppMainBundle/Resources/public/js/respond.min.js'
+                '@AppMainBundle/Resources/public/js/selectivizr-min.js'
+            %}
+            <!--[if lte IE 9]>
+                <script type="text/javascript" src="{{ asset_url }}"></script>
+            <![endif]-->
+            {% endjavascripts %}
+
+            {# Find places where your CSS is broken, docs how to use:
+               http://meyerweb.com/eric/tools/css/diagnostics/' #}
+            {#<link href="{{ asset('bundles/mopabootstrap/css/diagnostic.css') }}" type="text/css" rel="stylesheet" media="screen" />#}
+        {% endblock head_style %}
+
+        <!-- FONTS -->
+        <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Tangerine:400,700' rel='stylesheet' type='text/css'>
+
+        {% block head_scripts %}
+            <script type="text/javascript" src="{{ asset('bundles/mopabootstrap/js/modernizr-2.7.1-respond-1.4.2.min.js') }}"></script>
+        {% endblock head_scripts %}
+    </head>
+{% endblock head %}
+
+{% block body_start %}
+    <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+{% endblock body_start %}
+
+{% block body %}
+
+    <!-- CONTAINER -->
+    <div class="container" id="container">
+
+        <!-- HEADER -->
+        <header class="header">
+            <img src="images/site/avatar.png" alt="avatar">
+            <h1>Hoang ND</h1>
+            <p>web developer</p>
+
+            <!-- NAV MENU -->
+            <ul class="vs-nav">
+
+                <li><a href="#/about">about me</a></li>
+                <li><a href="#/portfolio">portfolio</a></li>
+                <li><a href="#/contact">contact</a></li>
+                <li><a href="#/blog">blog</a></li>
+                <li><a href="#/resume">resume</a></li>
+
+            </ul>
+            <!-- NAV MENU -->
+
+            <!-- SEARCH -->
+            <div class="header-search">
+                <form role="search" method="get" id="search-form" action="#">
+                    <input type="text" value="" name="s" id="search" placeholder="ENTER KEYWORD">
+                    <input type="submit" id="search-submit" title="Search" value="&#8594;">
+                </form>
+            </div>
+            <!-- SEARCH -->
+        </header>
+        <!-- HEADER -->
+
+
+        <!-- WRAPPER -->
+        <div class="wrapper">
+            {% block content %}
+            {% endblock content %}
+        </div>
+        <!-- WRAPPER -->
+
+
+    </div>
+    <!-- CONTAINER -->
+
+
+    <!-- PORTFOLIO SINGLE AJAX CONTENT CONTAINER -->
+    <div class="p-overlay"></div>
+    <div class="p-overlay"></div>
+
+    <!-- ALERT : used for contact form mail delivery alert -->
+    <div class="site-alert animated"></div>
+
+    {% block foot_script %}
+    {% block jquery %}
+        {# Load jQuery from Google CDN
+         http://encosia.com/3-reasons-why-you-should-let-google-host-jquery-for-you/ #}
+        <script src="{% block jquery_cdn_url %}//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js{% endblock jquery_cdn_url %}"></script>
+        <script>window.jQuery || document.write('<script src="{% block jquery_local_url %}../js/libs/jquery-1.11.0.min.js{% endblock jquery_local_url %}"><\/script>')</script>
+    {% endblock jquery %}
+        {# Asynchronous Google Analytics snippet grabbed from:
+           http://mathiasbynens.be/notes/async-analytics-snippet#dont-push-it #}
+        {# more GA tweaks:
+           http://html5boilerplate.com/docs/ga-augments/ #}
+        {% if google['analytics'] is defined %}
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+                    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+                e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+                e.src='//www.google-analytics.com/analytics.js';
+                r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','{{ google['analytics'] }}');ga('send','pageview');
+        </script>
+        {% endif %}
+
+        {% block foot_script_assetic %}
+            {% javascripts
+            '@MopaBootstrapBundle/Resources/public/bootstrap/js/tooltip.js'
+            '@MopaBootstrapBundle/Resources/public/bootstrap/js/*.js'
+            '@MopaBootstrapBundle/Resources/public/js/mopabootstrap-collection.js'
+            '@MopaBootstrapBundle/Resources/public/js/mopabootstrap-subnav.js'
+            '@AppMainBundle/Resources/public/js/jquery-migrate-1.2.1.min.js'
+            '@AppMainBundle/Resources/public/js/jquery.address-1.5.min.js'
+            '@AppMainBundle/Resources/public/js/triple.layout.js'
+            '@AppMainBundle/Resources/public/js/smoothscroll.js'
+            '@AppMainBundle/Resources/public/js/nprogress.js'
+            '@AppMainBundle/Resources/public/js/fastclick.js'
+            '@AppMainBundle/Resources/public/js/jquery.imagesloaded.min.js'
+            '@AppMainBundle/Resources/public/js/jquery.isotope.min.js'
+            '@AppMainBundle/Resources/public/js/jquery.validate.min.js'
+            '@AppMainBundle/Resources/public/js/jquery.uniform.min.js'
+            '@AppMainBundle/Resources/public/js/jquery.fancybox-1.3.4.pack.js'
+            '@AppMainBundle/Resources/public/js/jquery.tooltipster.min.js'
+            '@AppMainBundle/Resources/public/js/classie.js'
+            '@AppMainBundle/Resources/public/js/main.js'
+            %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% endblock foot_script_assetic %}
+            {#'@AppMainBundle/Resources/public/js/jquery.flexslider-min.js'#}
+        {{ parent() }}
+    {% endblock foot_script %}
+{% endblock body %}

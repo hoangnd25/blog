@@ -1,0 +1,6 @@
+services:
+    cmf_create.persistence.orm.object_mapper:
+        class: Midgard\CreatePHP\Mapper\DoctrineOrmMapper
+        arguments:
+            - "%cmf_create.map%"
+            - "@doctrine"
