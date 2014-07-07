@@ -39,16 +39,16 @@
     <!-- PAGE : ABOUT -->
 
 
-    <!-- PAGE : PORTFOLIO -->
-    <section id="portfolio" class="portfolio page">
-        <div class="content">
+    {#<!-- PAGE : PORTFOLIO -->#}
+    {#<section id="portfolio" class="portfolio page">#}
+        {#<div class="content">#}
 
-            <!-- PORTFOLIO PAGE CONTENT -->
+            {#<!-- PORTFOLIO PAGE CONTENT -->#}
 
-        </div>
-        <!-- CONTENT -->
-    </section>
-    <!-- PAGE : PORTFOLIO -->
+        {#</div>#}
+        {#<!-- CONTENT -->#}
+    {#</section>#}
+    {#<!-- PAGE : PORTFOLIO -->#}
 
 
     <!-- PAGE : CONTACT -->
@@ -61,15 +61,15 @@
                     <h2 class="section-title"><span><i class="icon-address-book"></i>LET'S GET IN TOUCH</span></h2>
                     <!-- LETTER -->
                     <div class="letter">
-                        <h4 class="letter-title">Hoang Nguyen</h4>
+                        <h4 class="letter-title">{{ personalDetails.name }}</h4>
                         <div class="stamp">
-                            <img src="/images/site/stamp-image.png" alt="stamp">
+                            <img src="/images/bckg/stamp-image.jpg" alt="stamp">
                         </div>
 
                         <div class="letter-info">
                             {#<p><i class="icon-at"></i>johhny@gmail.com</p>#}
-                            <p><i class="icon-phone"></i>0415586869</p>
-                            <p><i class="icon-location"></i>Station Street, Box Hill North Victoria 3129 Australia</p>
+                            <p><i class="icon-phone"></i>{{ personalDetails.phone }}</p>
+                            <p><i class="icon-location"></i>{{ personalDetails.address }}</p>
                         </div>
 
                     </div>
@@ -108,12 +108,12 @@
                     <h2 class="section-title"><span><i class="icon-chat"></i>LET'S SOCIALIZE</span></h2>
                     <!-- SOCIAL -->
                     <ul class="social">
-                        <li><a class="facebook" href="#"></a></li>
-                        <li><a class="twitter" href="#"></a></li>
-                        <li><a class="linkedin" href="#"></a></li>
-                        <li><a class="google-plus" href="#"></a></li>
+                        <li><a class="facebook" href="{{ personalDetails.facebook }}"></a></li>
+                        <li><a class="twitter" href="{{ personalDetails.twitter }}"></a></li>
+                        <li><a class="linkedin" href="{{ personalDetails.linkedin }}"></a></li>
+                        <li><a class="google-plus" href="{{ personalDetails.google_plus }}"></a></li>
                         {#<li><a class="pinterest" href="#"></a></li>#}
-                        <li><a class="github" href="#"></a></li>
+                        <li><a class="github" href="{{ personalDetails.github }}"></a></li>
                         {#<li><a class="behance" href="#"></a></li>#}
                         {#<li><a class="dribbble" href="#"></a></li>#}
                         {#<li><a class="instagram" href="#"></a></li>#}
@@ -144,7 +144,7 @@
                     <h2 class="section-title"><span><i class="icon-location"></i>LOCATION</span></h2>
                     <!-- GOOGLE MAP -->
                     <div class="map">
-                        <div data-latitude="-37.809951037" data-longitude="145.1250310145" data-zoom="6" id="map-canvas" class="map-canvas"></div>
+                        <div data-latitude="{{ personalDetails.map_lat }}" data-longitude="{{ personalDetails.map_lon }}" data-zoom="6" id="map-canvas" class="map-canvas"></div>
                     </div>
                     <!-- GOOGLE MAP -->
                 </div>
@@ -159,7 +159,7 @@
     <!-- PAGE : BLOG -->
     <section id="blog" class="page">
         <div class="content">
-
+            <h2 class="section-title center"><span><i class="icon-book-open"></i>LATEST FROM THE BLOG</span></h2>
             <!-- BLOG PAGE CONTENT -->
 
         </div>
@@ -178,25 +178,16 @@
                     <!-- timeline -->
                     <div class="timeline">
                         <h2><i class="icon-desktop"></i>WORK HISTORY</h2>
-                        <div class="event current">
-                            <span class="date">2012</span>
-                            <h4>Web Developer</h4>
-                            <h5>RelyIT</h5>
-                            <p>I'm currently working for RelyIT. My job is to create websites, develop mobile apps and other stuffs.</p>
-                        </div>
-                        {#<div class="event">#}
-                            {#<span class="date">2010</span>#}
-                            {#<h4>Web Developer</h4>#}
-                            {#<h5>Google Inc.</h5>#}
-                            {#<p>I worked as a Web Developer at Google for 3 years. I create usable web interfaces, front end coding stuff and almost anything. But i love what i do.</p>#}
-                        {#</div>#}
 
-                        {#<div class="event">#}
-                            {#<span class="date">2006</span>#}
-                            {#<h4>Exclusive Author</h4>#}
-                            {#<h5>Envato Inc.</h5>#}
-                            {#<p>I am an Elite Author at Envato. I create usable web interfaces, front end coding stuff and almost anything. But i love what i do.</p>#}
-                        {#</div>#}
+                        {% for eh in workHistory %}
+                            <div class="event {% if eh.current %}current{% endif %}">
+                                <span class="date">{{ eh.year }}</span>
+                                <h4>{{ eh.title }}</h4>
+                                <h5>{{ eh.at }}</h5>
+                                <p>{{ eh.description }}</p>
+                            </div>
+                        {% endfor %}
+
                     </div>
                     <!-- timeline -->
 
@@ -206,26 +197,14 @@
 
                         <h2><i class="icon-college"></i>EDUCATION HISTORY</h2>
 
-                        <div class="event current">
-                            <span class="date">2013</span>
-                            <h4>Bachelor of Business Information System</h4>
-                            <h5>Swinburne University</h5>
-                            <p>I'm studying my final year. Mostly boring stuffs, but i'm gonna get my degree soon.</p>
-                        </div>
-
-                        <div class="event">
-                            <span class="date">2012</span>
-                            <h4>Diploma of Commerce</h4>
-                            <h5>Deakin University</h5>
-                            <p>I came to australia and got my Diploma at Deakin.</p>
-                        </div>
-
-                        <div class="event">
-                            <span class="date">2008</span>
-                            <h4>Higher Diploma of Software Engineering</h4>
-                            <h5>Aprotrain Aptech</h5>
-                            <p>I studied Database System, .NET, Java frameworks and other geeky stuffs.</p>
-                        </div>
+                        {% for eh in educationHistory %}
+                            <div class="event {% if eh.current %}current{% endif %}">
+                                <span class="date">{{ eh.year }}</span>
+                                <h4>{{ eh.title }}</h4>
+                                <h5>{{ eh.at }}</h5>
+                                <p>{{ eh.description }}</p>
+                            </div>
+                        {% endfor %}
 
                     </div>
                     <!-- timeline -->
@@ -239,59 +218,16 @@
                     <!-- DEV SKILLS -->
                     <div class="skillset">
 
-                        <!-- .skill-unit -->
-                        <div class="skill-unit">
-                            <h4>PHP</h4>
-                            <div class="bar" data-percent="90">
-                                <div class="progress"></div>
+                        {% for s in skills %}
+                            <!-- .skill-unit -->
+                            <div class="skill-unit">
+                                <h4>{{ s.name }}</h4>
+                                <div class="bar" data-percent="{{ s.level }}">
+                                    <div class="progress"></div>
+                                </div>
                             </div>
-                        </div>
-                        <!-- .skill-unit -->
-
-                        <!-- .skill-unit -->
-                        <div class="skill-unit">
-                            <h4>HTML & CSS & Javascript</h4>
-                            <div class="bar" data-percent="70">
-                                <div class="progress"></div>
-                            </div>
-                        </div>
-                        <!-- .skill-unit -->
-
-                        <!-- .skill-unit -->
-                        <div class="skill-unit">
-                            <h4>Java</h4>
-                            <div class="bar" data-percent="70">
-                                <div class="progress"></div>
-                            </div>
-                        </div>
-                        <!-- .skill-unit -->
-
-                        <!-- .skill-unit -->
-                        <div class="skill-unit">
-                            <h4>C#</h4>
-                            <div class="bar" data-percent="60">
-                                <div class="progress"></div>
-                            </div>
-                        </div>
-                        <!-- .skill-unit -->
-
-                        <!-- .skill-unit -->
-                        <div class="skill-unit">
-                            <h4>Objective C</h4>
-                            <div class="bar" data-percent="30">
-                                <div class="progress"></div>
-                            </div>
-                        </div>
-                        <!-- .skill-unit -->
-
-                        <!-- .skill-unit -->
-                        <div class="skill-unit">
-                            <h4>Swift</h4>
-                            <div class="bar" data-percent="15">
-                                <div class="progress"></div>
-                            </div>
-                        </div>
-                        <!-- .skill-unit -->
+                            <!-- .skill-unit -->
+                        {% endfor %}
 
                     </div>
                     <!-- DEV SKILLS -->
@@ -323,7 +259,7 @@
                     <p>Connect with me on LinkedIn.</p>
                     <!-- DOWNLOAD BUTTON -->
                     <div class="download-button">
-                        <a href="http://au.linkedin.com/in/hoangnd" class="button primary">MY LINKEDIN PROFILE</a>
+                        <a href="{{ personalDetails.linkedin }}" class="button primary">MY LINKEDIN PROFILE</a>
                     </div>
                     <!-- DOWNLOAD BUTTON -->
                 </div>

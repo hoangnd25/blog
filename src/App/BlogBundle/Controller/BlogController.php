@@ -16,7 +16,6 @@ class BlogController extends Controller
     {
         $repo = $this->getDoctrine()->getRepository("AppBlogBundle:Post");
         $blog = $repo->find($id);
-
         return array('blog'=> $blog);
     }
 }

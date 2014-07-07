@@ -117,7 +117,7 @@
             <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="print" />
             {% endstylesheets %}
 
-            {% stylesheets
+            {% stylesheets output='css/main.js'
             '@AppMainBundle/Resources/public/css/normalize.css'
             '@MopaBootstrapBundle/Resources/public/less/mopabootstrapbundle-fa4.less'
             '@AppMainBundle/Resources/public/css/nprogress.css'
@@ -129,13 +129,14 @@
             '@AppMainBundle/Resources/public/css/tooltipster.css'
             '@AppMainBundle/Resources/public/css/style.css'
             '@AppMainBundle/Resources/public/css/main.css'
+            '@AppMainBundle/Resources/public/css/skin-overlay.css'
             filter='less'
             %}
             <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
             {% endstylesheets %}
 
-            {% javascripts
-                '@AppMainBundle/Resources/public/js/html5shiv.js'
+            {% javascripts output='js/IE.js'
+            '@AppMainBundle/Resources/public/js/html5shiv.js'
                 '@AppMainBundle/Resources/public/js/respond.min.js'
                 '@AppMainBundle/Resources/public/js/selectivizr-min.js'
             %}
@@ -179,7 +180,7 @@
             <ul class="vs-nav">
 
                 <li><a href="#/about">about me</a></li>
-                <li><a href="#/portfolio">portfolio</a></li>
+                {#<li><a href="#/portfolio">portfolio</a></li>#}
                 <li><a href="#/contact">contact</a></li>
                 <li><a href="#/blog">blog</a></li>
                 <li><a href="#/resume">resume</a></li>
@@ -241,7 +242,7 @@
         {% endif %}
 
         {% block foot_script_assetic %}
-            {% javascripts
+            {% javascripts  output='js/main.js'
             '@MopaBootstrapBundle/Resources/public/bootstrap/js/tooltip.js'
             '@MopaBootstrapBundle/Resources/public/bootstrap/js/*.js'
             '@MopaBootstrapBundle/Resources/public/js/mopabootstrap-collection.js'

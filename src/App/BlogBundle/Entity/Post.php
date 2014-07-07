@@ -2,6 +2,7 @@
 
 namespace App\BlogBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -28,12 +29,29 @@ class Post
      */
     private $title;
 
+//    /**
+//     * @var string
+//     *
+//     * @ORM\Column(name="intro", type="text")
+//     */
+//    private $intro;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Tag", mappedBy="posts",cascade={"persist"})
+     */
+    private $tags;
+
     /**
      * @var string
      *
      * @ORM\Column(name="body", type="text")
      */
     private $body;
+
+    function __construct()
+    {
+        $this->tags = new ArrayCollection();
+    }
 
 
     /**
@@ -91,4 +109,37 @@ class Post
     {
         return $this->body;
     }
+
+    /**
+     * @param string $intro
+     */
+    public function setIntro($intro)
+    {
+        $this->intro = $intro;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIntro()
+    {
+        return $this->intro;
+    }
+
+    /**
+     * @param mixed $tags
+     */
+    public function setTags($tags)
+    {
+        $this->tags = $tags;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
 }
