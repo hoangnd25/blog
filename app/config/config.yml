@@ -61,6 +61,7 @@ doctrine:
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
+        mappings: ~
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -118,3 +119,16 @@ mopa_bootstrap:
     form:
         show_legend: false # default is true
     menu: ~
+    initializr:
+        meta:
+        dns_prefetch:
+              - '//ajax.googleapis.com'
+              - '//maxcdn.bootstrapcdn.com'
+
+
+stof_doctrine_extensions:
+    default_locale: en_US
+    orm:
+        default:
+            timestampable: true
+            sluggable: true

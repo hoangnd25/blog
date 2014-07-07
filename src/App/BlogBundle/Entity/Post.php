@@ -4,6 +4,7 @@ namespace App\BlogBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Post
@@ -29,17 +30,44 @@ class Post
      */
     private $title;
 
-//    /**
-//     * @var string
-//     *
-//     * @ORM\Column(name="intro", type="text")
-//     */
-//    private $intro;
+    /**
+     * @Gedmo\Slug(fields={"title"})
+     * @ORM\Column(length=300, unique=true, nullable= true))
+     */
+    private $slug;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="intro", type="text", nullable= true)
+     */
+    private $intro;
 
     /**
      * @ORM\ManyToMany(targetEntity="Tag", mappedBy="posts",cascade={"persist"})
      */
     private $tags;
+
+    /**
+     * @ORM\Column(type="boolean", nullable= true)
+     */
+    private $published;
+
+    /**
+     * @var datetime $created
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", nullable= true)
+     */
+    private $created;
+
+    /**
+     * @var datetime $updated
+     *
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime", nullable= true)
+     */
+    private $updated;
 
     /**
      * @var string
@@ -51,8 +79,8 @@ class Post
     function __construct()
     {
         $this->tags = new ArrayCollection();
+        $this->setPublished(false);
     }
-
 
     /**
      * Get id
@@ -140,6 +168,70 @@ class Post
     public function getTags()
     {
         return $this->tags;
+    }
+
+    /**
+     * @param mixed $published
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPublished()
+    {
+        return $this->published;
+    }
+
+    /**
+     * @param \datetime $created
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+    }
+
+    /**
+     * @return \datetime
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * @param \datetime $updated
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+    }
+
+    /**
+     * @return \datetime
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+
+    /**
+     * @param mixed $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
 }

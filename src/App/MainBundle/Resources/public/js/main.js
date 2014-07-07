@@ -265,7 +265,7 @@ var $container, $blog_container;
 		
 		// ------------------------------
 		/* TOOLTIPS */
-		$('.tooltip').each(function(index, element) {
+		$('.tooltipster').each(function(index, element) {
         	$(this).tooltipster({
 			position: $(this).attr('data-tooltip-pos'),
 			fixedWidth : 300,

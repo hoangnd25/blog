@@ -1,0 +1,18 @@
+{% for post in posts %}
+    <!-- post -->
+    <article class="hentry media-cell">
+        <header class="media-cell-desc">
+            <span title="{{ post.created | date('Y') }}" class="date"><span class="day">{{ post.created | date('d') }}</span>{{ post.created | date('M') }}</span>
+            <h3><a href="{{ path('app_blog_blog_show',{'slug':post.slug}) }}">{{ post.title }}</a></h3>
+        </header>
+        <div class="media-box">
+            {#<img src="images/blog/blog-01.png" alt="post-image">#}
+            {#<div class="mask"></div>#}
+            {#<a href="blog-single.html"></a>#}
+            <div class="intro">
+                {{ post.intro | raw }}
+            </div>
+        </div>
+    </article>
+    <!-- post -->
+{% endfor %}

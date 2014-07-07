@@ -117,9 +117,9 @@
             <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="print" />
             {% endstylesheets %}
 
-            {% stylesheets output='css/main.js'
+            {% stylesheets output='css/main.css'
             '@AppMainBundle/Resources/public/css/normalize.css'
-            '@MopaBootstrapBundle/Resources/public/less/mopabootstrapbundle-fa4.less'
+            '@MopaBootstrapBundle/Resources/public/less/mopabootstrapbundle.less'
             '@AppMainBundle/Resources/public/css/nprogress.css'
             '@AppMainBundle/Resources/public/css/animate.css'
             '@AppMainBundle/Resources/public/css/fontello.css'
@@ -154,6 +154,7 @@
         <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Tangerine:400,700' rel='stylesheet' type='text/css'>
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
 
         {% block head_scripts %}
             <script type="text/javascript" src="{{ asset('bundles/mopabootstrap/js/modernizr-2.7.1-respond-1.4.2.min.js') }}"></script>
@@ -177,15 +178,15 @@
             <p>web developer</p>
 
             <!-- NAV MENU -->
+            {% block nav %}
             <ul class="vs-nav">
-
                 <li><a href="#/about">about me</a></li>
                 {#<li><a href="#/portfolio">portfolio</a></li>#}
                 <li><a href="#/contact">contact</a></li>
                 <li><a href="#/blog">blog</a></li>
                 <li><a href="#/resume">resume</a></li>
-
             </ul>
+            {% endblock nav %}
             <!-- NAV MENU -->
 
             <!-- SEARCH -->

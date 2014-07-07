@@ -15,15 +15,25 @@ class PostFixtures extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $post = new Post();
-        $post->setTitle('test');
-        $post->setBody('test content');
+        foreach(range(1,10) as $i){
+            $post = new Post();
+            $post->setPublished(true);
+            $post->setTitle('Suspendisse architecto ultricies risus? '.$i);
+            $post->setIntro('Pariatur minus possimus aperiam, ducimus porttitor pretium inventore fusce, tristique saepe,
+            voluptates eligendi sociosqu, erat ipsum error harum at earum placerat? Laboris tempore lobortis nonummy.');
 
-        $tag = New Tag('test');
-        $tag->getPosts()->add($post);
-        $post->getTags()->add($tag);
+            $post->setBody('Pariatur minus possimus aperiam, ducimus porttitor pretium inventore fusce, tristique saepe,
+            voluptates eligendi sociosqu, erat ipsum error harum at earum placerat? Laboris tempore lobortis nonummy
+            diamlorem conubia cumque proin tempore cupidatat perspiciatis viverra per exercitation corporis per libero,
+             laoreet voluptate, mollis iste! Congue nonummy dolorum pulvinar ducimus orci fames dictumst.
 
-        $manager->persist($post);
+            Dolorem suspendisse pariatur esse, mattis posuere sollicitudin aliquet omnis! Morbi magnis orci scelerisque quo varius,
+            maiores ullam minim scelerisque ante lacus, culpa pellentesque malesuada praesent habitasse ante,
+            quibusdam quae autem, quasi posuere iaculis facilis, suscipit, provident? Alias eveniet repellendus ultrices,
+            aliquip ullam, risus tempore nec, rem dignissimos nisl habitasse? Porro.');
+            $manager->persist($post);
+        }
+
         $manager->flush();
 
 

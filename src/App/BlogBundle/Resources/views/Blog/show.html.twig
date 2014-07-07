@@ -1,0 +1,164 @@
+{% extends '::base.html.twig' %}
+{% block html_class %}single-page-layout{% endblock html_class %}
+
+{% block nav %}
+    <ul class="vs-nav">
+
+        <!-- InstanceBeginEditable name="Menu-Content" -->
+
+        <li><a href="blog.html"><i title="back to blog" class="icon-left-open tooltipster" data-tooltip-pos="left"></i></a></li>
+        <li><a href="{{ path('index') }}"><i title="go to home" class="icon-home-1 tooltipster" data-tooltip-pos="right"></i></a></li>
+
+        <!-- InstanceEndEditable -->
+
+    </ul>
+
+{% endblock nav %}
+
+{% block content %}
+    <div class="readable-content blog-single ">
+
+    <!-- .hentry -->
+    <article class="post type-post format-standard hentry">
+
+
+        <!-- .entry-header -->
+        <header class="entry-header">
+            <h1 class="entry-title">{{ post.title }}</h1>
+        </header>
+        <!-- .entry-header -->
+        <!-- .entry-meta -->
+        <div class="entry-meta">
+
+            <span class="posted-on">
+                posted on
+                <a href="#" title="{{ post.created | date('g:ia') }}" rel="bookmark"><time class="entry-date" datetime="{{ post.created | date('c') }}">{{ post.created | date('d/m/Y')}}</time></a>
+            </span>
+
+            <span class="posted-by">
+                by
+                <a class="url fn n" href="#" title="View all posts by ahmetsali" rel="author">Albert Einstein</a>
+            </span>
+
+            <!--<span class="edit-link">
+                <a class="post-edit-link" href="#" title="Edit Post">Edit</a>
+            </span>-->
+
+        </div>
+        <!-- .entry-meta -->
+
+        {#<!-- .featured-image -->#}
+        {#<div class="featured-image">#}
+            {#<img src="images/blog/lee.png" alt="blog-image">#}
+        {#</div>#}
+        {#<!-- .featured-image -->#}
+
+
+        <!-- .entry-content -->
+        <div class="entry-content drop-cap">
+            {{ post.body | raw }}
+
+            {#<!-- .project-action -->#}
+            {#<div class="project-action">#}
+                {#<a href="#" class="button button-icon big blue"><i class="fa fa-cloud-download"></i>DOWNLOAD</a>#}
+                {#<a href="#" class="button button-icon big grass"><i class="fa fa-eye"></i>PREVIEW</a>#}
+                {#<a href="#" class="button button-icon big red"><i class="fa fa-github"></i>GITHUB</a>#}
+            {#</div>#}
+            {#<!-- .project-action -->#}
+
+            {#<!-- .related-posts -->#}
+            {#<div class="related-posts">#}
+                {#<h3>RELATED POSTS</h3>#}
+                {#<ol>#}
+                    {#<li><a href="#" rel="bookmark">Adding A Personal Touch To Your Web Design</a></li>#}
+                    {#<li><a href="#" rel="bookmark">Building A Relationship Between CSS &amp; JavaScript</a></li>#}
+                    {#<li><a href="#" rel="bookmark">How To Build Long-Term Client Relationships</a></li>#}
+                {#</ol>#}
+            {#</div>#}
+            {#<!-- .related-posts -->#}
+
+            <!-- .entry-meta -->
+
+            <footer class="entry-meta">
+                <h3>TAGS</h3>
+                <a href="#" rel="tag">design</a> <a href="#" rel="tag">responsive</a> <a href="#" rel="tag">think</a>
+            </footer>
+            <!-- .entry-meta -->
+
+
+
+        </div>
+        <!-- .entry-content -->
+    </article>
+    <!-- .hentry -->
+
+    {#<!-- .about-author -->#}
+    {#<aside class="about-author">#}
+
+        {#<h3>WRITTEN BY</h3>#}
+
+        {#<!-- .author-bio -->#}
+        {#<div class="author-bio">#}
+
+            {#<!-- .author-img -->#}
+            {#<div class="author-img">#}
+                {#<a href="#"><img alt="Johnny Doe" src="images/site/author-1.jpg" class="avatar"></a>#}
+            {#</div>#}
+            {#<!-- .author-img -->#}
+
+            {#<!-- .author-info -->#}
+            {#<div class="author-info">#}
+                {#<h4 class="author-name">Johnny Doe</h4>#}
+                {#<p>Johnny Doe was born in Ulm, in the Kingdom of Württemberg in the German Empire on 14 March 1879. His father was Hermann Einstein, a salesman and engineer. His mother was Pauline Einstein (née Koch).</p>#}
+            {#</div>#}
+            {#<!-- .author-info -->#}
+
+        {#</div>#}
+        {#<!-- .author-bio -->#}
+
+    {#</aside>#}
+    {#<!-- .about-author -->#}
+
+    {#<!-- .nav-single -->#}
+    {#<nav class="nav-single row">#}
+
+        {#<div class="nav-previous col-sm-6">#}
+            {#<h4>PREVIOUS POST</h4>#}
+            {#<a href="#" rel="prev"><span class="meta-nav">←</span> Adding A Personal Touch To Your Web Design</a>#}
+        {#</div>#}
+
+        {#<div class="nav-next col-sm-6">#}
+            {#<h4>NEXT POST</h4>#}
+            {#<a href="#" rel="next">How To Build Long-Term Client Relationships <span class="meta-nav">→</span></a>#}
+        {#</div>#}
+
+    {#</nav>#}
+    {#<!-- .nav-single -->#}
+
+
+        <!-- #comments -->
+        <div id="comments" class="comments-area">
+            <h2 class="comments-title"><i class="icon-chat"></i> <a href="#disqus_thread" style="text-transform: uppercase;color: #345 !important;"></a></h2>
+            <div id="disqus_thread"></div>
+            <script type="text/javascript">
+                var disqus_shortname = 'hoangnd';
+                var disqus_identifier = '{{ post.slug }}';
+                var disqus_title = '{{ post.title }}';
+
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+
+                (function () {
+                    var s = document.createElement('script'); s.async = true;
+                    s.type = 'text/javascript';
+                    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+                    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+                }());
+            </script>
+        </div>
+        <!-- #comments -->
+    </div>
+{% endblock content %}

@@ -33,8 +33,54 @@
                     <div id="latest-tweets" class="widget-twitter" data-twitterid="" data-tweet-count="1"></div>
                 </div>
             </div>
+
+            <h2 class="section-title"><span><i class="fa fa-magic"></i>WHAT I DO</span></h2>
+            <!-- SERVICES -->
+            <div class="row">
+                <div class="col-sm-6 col-md-3">
+                    <!-- service -->
+                    <div class="service color1">
+                        <i class="fa fa-html5"></i>
+                        <h4>Website frontend</h4>
+                        <p>I design simplistic website. I can integrate website template to existing system including CMS, eCommerce sites</p>
+                    </div>
+                    <!-- service -->
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <!-- service -->
+                    <div class="service color2">
+                        <i class="fa fa-cogs"></i>
+                        <h4>Website development</h4>
+                        <p>I can develop websites using major frameworks or just customise well-supported solutions to suit specific needs. </p>
+                    </div>
+                    <!-- service -->
+                </div>
+
+                <div class="col-sm-6 col-md-3">
+                    <!-- service -->
+                    <div class="service color3">
+                        <i class="fa fa-search"></i>
+                        <h4>SEO</h4>
+                        <p>I can transform your old website to a more Search Engine friendly website. </p>
+                    </div>
+                    <!-- service -->
+                </div>
+
+                <div class="col-sm-6 col-md-3">
+                    <!-- service -->
+                    <div class="service color4">
+                        <i class="fa fa-rocket"></i>
+                        <h4>Mobile Apps</h4>
+                        <p>Although developing mobile app is not my strong point, i can create native or hybrid apps for mobile devices </p>
+                    </div>
+                    <!-- service -->
+                </div>
+
+            </div>
+            <!-- SERVICES -->
+
+
         </div>
-        <!-- CONTENT -->
     </section>
     <!-- PAGE : ABOUT -->
 
@@ -161,7 +207,13 @@
         <div class="content">
             <h2 class="section-title center"><span><i class="icon-book-open"></i>LATEST FROM THE BLOG</span></h2>
             <!-- BLOG PAGE CONTENT -->
+            <!-- LATEST POSTS -->
+            <div class="latest-posts media-grid" data-layout="fitRows">
+                {{ render(controller('AppBlogBundle:Blog:latestBlog')) }}
+            </div>
 
+            <p class="launch"><a class="button primary" href="blog.html">SEE ALL POSTS</a></p>
+            <!-- LATEST POSTS -->
         </div>
     </section>
     <!-- PAGE : BLOG -->

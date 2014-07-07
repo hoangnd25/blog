@@ -29,7 +29,9 @@
         "hwi/oauth-bundle": "0.3.*@dev",
         "sonata-project/admin-bundle": "2.3.*@dev",
         "sonata-project/doctrine-orm-admin-bundle": "2.3.*@dev",
-        "sonata-project/jquery-bundle": "1.10.*@dev"
+        "sonata-project/jquery-bundle": "1.10.*@dev",
+        "stof/doctrine-extensions-bundle": "~1.1@dev",
+        "raulfraile/ladybug-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
