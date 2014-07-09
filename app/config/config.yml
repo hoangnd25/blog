@@ -31,7 +31,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ CmfCreateBundle, FMElfinderBundle, MopaBootstrapBundle ]
+    bundles:        [ CmfCreateBundle, FMElfinderBundle, MopaBootstrapBundle, AppBlogBundle ]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -40,8 +40,10 @@ assetic:
             node_paths: [/usr/local/lib/node_modules]
         #closure:
         #    jar: "%kernel.root_dir%/Resources/java/compiler.jar"
-        #yui_css:
-        #    jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar"
+        yui_css:
+            jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar"
+        yui_js:
+            jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar"
 
 # Doctrine Configuration
 doctrine:
@@ -79,7 +81,7 @@ fos_rest:
 cmf_create:
     object_mapper_service_id: cmf_create.persistence.orm.object_mapper
     security:
-        role:  false          #ROLE_ADMIN
+        role:  ROLE_ADMIN
         checker_service: ~
     editor_base_path: /bundles/cmfcreate/vendor/ckeditor/
     fixed_toolbar:    false
@@ -174,3 +176,35 @@ sonata_seo:
         head:
             'xmlns':              http://www.w3.org/1999/xhtml
             'xmlns:og':           http://opengraphprotocol.org/schema/
+
+
+sonata_admin:
+    title:      Administrator Area
+#    title_logo: bundles/acmedemo/img/fancy_acme_logo.png
+
+trsteel_ckeditor:
+    class: Trsteel\CkeditorBundle\Form\Type\CkeditorType
+    transformers: ['html_purifier']
+    toolbar: ['document', 'clipboard', 'editing', '/', 'basicstyles', 'paragraph', 'links', '/', 'insert', 'styles', 'tools']
+    toolbar_groups:
+        document: ['Source','-','Save','-','Templates']
+        clipboard: ['Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo']
+        editing: ['Find','Replace','-','SelectAll']
+        basicstyles: ['Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat']
+        paragraph: ['NumberedList','BulletedList','-','Outdent','Indent','-','JustifyLeft', 'JustifyCenter','JustifyRight','JustifyBlock']
+        links: ['Link','Unlink','Anchor']
+        insert: ['Image','Table','HorizontalRule','pbckcode']
+        styles: ['Styles','Format']
+        tools: ['Maximize', 'ShowBlocks']
+    ui_color: '#000000'
+    startup_outline_blocks: true
+    width: 800 #Integer or %
+    height: 300 #Integer or %
+    language: 'en-au'
+    filebrowser_image_browse_url:
+        route: elfinder
+    base_path: /bundles/appmain/js/ckeditor/
+    skin: office2013
+    external_plugins:
+        pbckcode:
+            path: bundles/appmain/js/ckeditor/plugins/pbckcode

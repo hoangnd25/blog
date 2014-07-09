@@ -39,6 +39,33 @@ class BlogController extends Controller
     }
 
     /**
+     * @Route("/b/{slug}")
+     * @Template()
+     */
+    public function indexAction($slug)
+    {
+        /**
+         * @var EntityManager $em
+         */
+        $em = $this->getDoctrine()->getManager();
+
+        $qb = $em->createQueryBuilder();
+        $qb
+            ->select('p,t')
+            ->from('AppBlogBundle:Post', 'p')
+            ->leftJoin('p.tags','t')
+            ->where('p.published = :published')
+            ->setParameter('published',true)
+            ->andWhere('p.slug = :slug')
+            ->setParameter('slug',$slug)
+        ;
+        $query = $qb->getQuery();
+        $post = $query->getResult();
+        $post = reset($post);
+        $this->get('cmf_seo.presentation')->updateSeoPage($post);
+        return array('post'=> $post);
+    }
+    /**
      * @Route("_internal/blog/latest")
      * @Template()
      */

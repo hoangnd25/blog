@@ -41,3 +41,13 @@
         </div>
     </div>
 {% endblock content %}
+
+
+{% block foot_script_assetic %}
+    {{ parent() }}
+    {% javascripts  output='js/blog.js'
+    '@AppMainBundle/Resources/public/js/prettify.js'
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock foot_script_assetic %}

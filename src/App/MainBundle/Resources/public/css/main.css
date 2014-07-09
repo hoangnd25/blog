@@ -74,14 +74,6 @@ select,
 button {
  	font-family: Lato, Arial, serif
 	}
-/* FONT AWESOME chrome svg hack for smooth icons : 
-   http://www.adtrak.co.uk/blog/font-face-chrome-rendering/#fix */
-@media screen and (-webkit-min-device-pixel-ratio:0) { 
-	@font-face {
-		font-family: 'FontAwesome'; src: url('fonts/font-awesome/fonts/fontawesome-webfont.svg') format('svg');
-		}
-	}
-/* FONT AWESOME ICONS */
 .fancy-ico:before,
 #fancybox-close:before,
 .icon,
@@ -2072,7 +2064,9 @@ a.more-link:hover {
 
 /* PAGINATION */
 .blog-posts .navigation{
-    margin-left: 90px;
+    @media (min-width: 768px){
+        margin-left: 90px;
+    }
 }
 .navigation,
 .post-pagination {
@@ -2080,12 +2074,18 @@ a.more-link:hover {
 	}
     .navigation .current{
         color: #ccc;
+        background-color: #fdfdfd;
     }
 	.navigation > div {
  		width: 50%; float: left;
 		}
 	.navigation a, .navigation .current{
- 		display: inline-block; padding: 1.5em 2.0em; border: 2px solid #DDE4E6; border-radius: 4px; font-weight: 800; text-transform: uppercase;
+ 		display: inline-block;
+        padding: 1.5em 2.0em !important;
+        border: 2px solid #DDE4E6; border-radius: 4px; font-weight: 800; text-transform: uppercase;
+            @media (max-width: 767px){
+            padding: 0.8em 1em !important;
+            }
 		}
 	.navigation .nav-next {
  		text-align: right
@@ -2825,3 +2825,7 @@ a.more-link:hover,
 #nprogress .spinner-icon {
   border-top-color: #5BCF80; border-left-color: #5BCF80;
 	}
+
+.navigation > div{
+    width: 100%;
+}

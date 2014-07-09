@@ -4,3 +4,7 @@ services:
         arguments:
             - "%cmf_create.map%"
             - "@doctrine"
+    cmf_seo.extractor_strategy.extra:
+        class: Symfony\Cmf\Bundle\SeoBundle\Extractor\ExtrasExtractor
+        tags:
+            -  { name: cmf_seo.extractor }

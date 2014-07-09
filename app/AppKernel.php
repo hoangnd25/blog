@@ -34,6 +34,8 @@ class AppKernel extends Kernel
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Sonata\SeoBundle\SonataSeoBundle(),
             new Symfony\Cmf\Bundle\SeoBundle\CmfSeoBundle(),
+            new Trsteel\CkeditorBundle\TrsteelCkeditorBundle(),
+            new Burgov\Bundle\KeyValueFormBundle\BurgovKeyValueFormBundle(),
 
             new App\BlogBundle\AppBlogBundle(),
             new App\MainBundle\AppMainBundle(),

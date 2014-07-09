@@ -3,8 +3,44 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "62d79925d06d1b50af8fd8a05bea7038",
+    "hash": "ed3bdabc371e3965d1840182c640a61a",
     "packages": [
+        {
+            "name": "burgov/key-value-form-bundle",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Burgov/KeyValueFormBundle.git",
+                "reference": "7e3a9e1e5b762fdeef313f1613201adb7aae47ed"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Burgov/KeyValueFormBundle/zipball/7e3a9e1e5b762fdeef313f1613201adb7aae47ed",
+                "reference": "7e3a9e1e5b762fdeef313f1613201adb7aae47ed",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "symfony/form": "~2.3"
+            },
+            "type": "bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Burgov\\Bundle\\KeyValueFormBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A form type for managing key-value pairs",
+            "time": "2014-05-02 11:17:04"
+        },
         {
             "name": "doctrine/annotations",
             "version": "v1.2.0",
@@ -743,6 +779,51 @@
                 "orm"
             ],
             "time": "2014-06-10 11:49:08"
+        },
+        {
+            "name": "ezyang/htmlpurifier",
+            "version": "v4.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ezyang/htmlpurifier.git",
+                "reference": "6f389f0f25b90d0b495308efcfa073981177f0fd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/6f389f0f25b90d0b495308efcfa073981177f0fd",
+                "reference": "6f389f0f25b90d0b495308efcfa073981177f0fd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "HTMLPurifier": "library/"
+                },
+                "files": [
+                    "library/HTMLPurifier.composer.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL"
+            ],
+            "authors": [
+                {
+                    "name": "Edward Z. Yang",
+                    "email": "admin@htmlpurifier.org",
+                    "homepage": "http://ezyang.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Standards compliant HTML filter written in PHP",
+            "homepage": "http://htmlpurifier.org/",
+            "keywords": [
+                "html"
+            ],
+            "time": "2013-11-30 08:25:19"
         },
         {
             "name": "friendsofsymfony/rest-bundle",
@@ -3808,6 +3889,61 @@
             "time": "2014-07-07 12:59:36"
         },
         {
+            "name": "trsteel/ckeditor-bundle",
+            "version": "v1.4.6",
+            "target-dir": "Trsteel/CkeditorBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/trsteel88/TrsteelCkeditorBundle.git",
+                "reference": "837c4f7b1832228dcbe11c8a7d7377db8c1da912"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/trsteel88/TrsteelCkeditorBundle/zipball/837c4f7b1832228dcbe11c8a7d7377db8c1da912",
+                "reference": "837c4f7b1832228dcbe11c8a7d7377db8c1da912",
+                "shasum": ""
+            },
+            "require": {
+                "ezyang/htmlpurifier": "~4.0",
+                "php": ">=5.3.0",
+                "symfony/form": ">=2.1,<2.6-dev",
+                "symfony/framework-bundle": "2.*,<2.6",
+                "twig/twig": ">=1.1,<2.0-dev"
+            },
+            "require-dev": {
+                "symfony/twig-bundle": "2.*,<2.6",
+                "symfony/yaml": "~2.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Trsteel\\CkeditorBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Trent Steel",
+                    "email": "trsteel88@gmail.com"
+                }
+            ],
+            "description": "Symfony2 bundle for easy integration of the CKEditor WYSIWYG",
+            "keywords": [
+                "CKEditor",
+                "editor",
+                "wysiwyg"
+            ],
+            "time": "2014-06-04 05:55:53"
+        },
+        {
             "name": "twbs/bootstrap",
             "version": "dev-master",
             "source": {
@@ -4074,7 +4210,8 @@
         "sonata-project/jquery-bundle": 20,
         "stof/doctrine-extensions-bundle": 20,
         "raulfraile/ladybug-bundle": 20,
-        "symfony-cmf/seo-bundle": 20
+        "symfony-cmf/seo-bundle": 20,
+        "burgov/key-value-form-bundle": 0
     },
     "platform": {
         "php": ">=5.3.3"

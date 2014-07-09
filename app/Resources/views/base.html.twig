@@ -1,10 +1,10 @@
 {% extends 'MopaBootstrapBundle::base_less.html.twig' %}
 
 {% block html_tag %}
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js {% block html_class %}{% endblock html_class %}" lang="en" data-classic-layout="false" data-mobile-only-classic-layout="true" data-inAnimation="fadeInUp" data-outAnimation="fadeOutDownBig"> <!--<![endif]-->
+<!--[if lt IE 7]>      <html {{ sonata_seo_html_attributes()}} class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html {{ sonata_seo_html_attributes()}} class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html {{ sonata_seo_html_attributes()}} class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html {{ sonata_seo_html_attributes()}} class="no-js {% block html_class %}{% endblock html_class %}" lang="en" data-classic-layout="false" data-mobile-only-classic-layout="true" data-inAnimation="fadeInUp" data-outAnimation="fadeOutDownBig"> <!--<![endif]-->
 
 {# make your site working offline with Application Cache (AppCache)
    http://www.html5rocks.com/en/tutorials/appcache/beginner/
@@ -12,7 +12,8 @@
 {% endblock html_tag %}
 
 {% block head %}
-    <head>
+    {% spaceless %}
+    <head {{ sonata_seo_head_attributes()}}>
         {# TODO: meta variable format, associative array or underscored string type #}
         <meta charset="utf-8" />
 
@@ -64,7 +65,7 @@
             <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="print" />
             {% endstylesheets %}
 
-            {% stylesheets output='css/main.css'
+            {% stylesheets output='css/main.css' filter='?yui_css'
             '@AppMainBundle/Resources/public/css/normalize.css'
             '@MopaBootstrapBundle/Resources/public/less/mopabootstrapbundle.less'
             '@AppMainBundle/Resources/public/css/nprogress.css'
@@ -74,6 +75,7 @@
             '@AppMainBundle/Resources/public/css/uniform.default.css'
             '@AppMainBundle/Resources/public/css/flexslider.css'
             '@AppMainBundle/Resources/public/css/tooltipster.css'
+            '@AppMainBundle/Resources/public/css/prettify.css'
             '@AppMainBundle/Resources/public/css/style.css'
             '@AppMainBundle/Resources/public/css/main.css'
             '@AppMainBundle/Resources/public/css/skin-overlay.css'
@@ -82,7 +84,7 @@
             <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
             {% endstylesheets %}
 
-            {% javascripts output='js/IE.js'
+            {% javascripts output='js/IE.js' filter='?yui_js'
             '@AppMainBundle/Resources/public/js/html5shiv.js'
                 '@AppMainBundle/Resources/public/js/respond.min.js'
                 '@AppMainBundle/Resources/public/js/selectivizr-min.js'
@@ -107,6 +109,7 @@
             <script type="text/javascript" src="{{ asset('bundles/mopabootstrap/js/modernizr-2.7.1-respond-1.4.2.min.js') }}"></script>
         {% endblock head_scripts %}
     </head>
+    {% endspaceless %}
 {% endblock head %}
 
 {% block body_start %}
@@ -114,7 +117,7 @@
 {% endblock body_start %}
 
 {% block body %}
-
+    {% spaceless %}
     <!-- CONTAINER -->
     <div class="container" id="container">
 
@@ -191,7 +194,7 @@
         {% endif %}
 
         {% block foot_script_assetic %}
-            {% javascripts  output='js/main.js'
+            {% javascripts  output='js/main.js' filter='?yui_js'
             '@MopaBootstrapBundle/Resources/public/bootstrap/js/tooltip.js'
             '@MopaBootstrapBundle/Resources/public/bootstrap/js/*.js'
             '@MopaBootstrapBundle/Resources/public/js/mopabootstrap-collection.js'
@@ -215,6 +218,12 @@
             {% endjavascripts %}
         {% endblock foot_script_assetic %}
             {#'@AppMainBundle/Resources/public/js/jquery.flexslider-min.js'#}
-        {{ parent() }}
+        {#<script type="text/javascript">#}
+            {#$(document).ready(function () {#}
+                {#$('[data-toggle="tooltip"]').tooltip();#}
+                {#$('[data-toggle="popover"]').popover();#}
+            {#});#}
+        {#</script>#}
     {% endblock foot_script %}
+    {% endspaceless %}
 {% endblock body %}

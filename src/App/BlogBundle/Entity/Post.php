@@ -14,7 +14,7 @@ use Symfony\Cmf\Bundle\SeoBundle\Extractor\KeywordsReadInterface;
 /**
  * Post
  *
- * @ORM\Table()
+ * @ORM\Table(name="post")
  * @ORM\Entity
  */
 class Post implements SeoAwareInterface, DescriptionReadInterface, ExtrasReadInterface, KeywordsReadInterface
@@ -49,7 +49,7 @@ class Post implements SeoAwareInterface, DescriptionReadInterface, ExtrasReadInt
     private $intro;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Tag", mappedBy="posts",cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Tag", mappedBy="posts",cascade={"persist","remove"})
      */
     private $tags;
 
@@ -170,6 +170,24 @@ class Post implements SeoAwareInterface, DescriptionReadInterface, ExtrasReadInt
     public function setTags($tags)
     {
         $this->tags = $tags;
+    }
+
+    /**
+     * @param mixed $tag
+     */
+    public function addTag($tag)
+    {
+        $this->tags->add($tag);
+        $tag->getPosts()->add($this);
+    }
+
+    /**
+     * @param mixed $tag
+     */
+    public function removeTag($tag)
+    {
+        $this->tags->removeElement($tag);
+        $tag->getPosts()->removeElement($this);
     }
 
     /**
@@ -317,6 +335,11 @@ class Post implements SeoAwareInterface, DescriptionReadInterface, ExtrasReadInt
                 $keywords[] = $tag->getName();
             }
         return  $keywords;
+    }
+
+    function __toString()
+    {
+        return $this->getTitle();
     }
 
 

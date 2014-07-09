@@ -5,6 +5,5 @@
     <children>
         <property property="schema:headline" identifier="title" />
         <property property="schema:text" identifier="body" />
-        <property property="schema:text" identifier="tags" />
     </children>
 </type>

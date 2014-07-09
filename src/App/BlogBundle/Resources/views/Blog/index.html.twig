@@ -6,14 +6,12 @@
     </head>
 
     <body>
-        {% createphp blog as="rdf" noautotag %}
+        {% createphp post as="rdf" noautotag %}
         <div {{ createphp_attributes(rdf) }}>
             <h1 class="my-title" {{ createphp_attributes( rdf.title ) }}>{{ createphp_content( rdf.title ) }}</h1>
             <div {{ createphp_attributes( rdf.body ) }}>{{ createphp_content( rdf.body ) }}</div>
 
-            {% for tag in rdf.tags %}{{ tag }}
-                <div {{ createphp_attributes( tag ) }}>{{ createphp_content( tag ) }}</div>
-            {% endfor %}
+    
         </div>
         {% endcreatephp %}
 

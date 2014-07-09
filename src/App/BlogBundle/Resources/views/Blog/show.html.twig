@@ -51,7 +51,6 @@
         <!-- .entry-content -->
         <div class="entry-content drop-cap">
             {{ post.body | raw }}
-
             {#<!-- .project-action -->#}
             {#<div class="project-action">#}
                 {#<a href="#" class="button button-icon big blue"><i class="fa fa-cloud-download"></i>DOWNLOAD</a>#}
@@ -70,7 +69,6 @@
                 {#</ol>#}
             {#</div>#}
             {#<!-- .related-posts -->#}
-
             {% if post.tags is not empty %}
                 <!-- .entry-meta -->
                 <footer class="entry-meta">
@@ -81,14 +79,10 @@
                 </footer>
                 <!-- .entry-meta -->
             {% endif %}
-
-
-
         </div>
         <!-- .entry-content -->
     </article>
     <!-- .hentry -->
-
     {#<!-- .about-author -->#}
     {#<aside class="about-author">#}
 
@@ -131,8 +125,6 @@
 
     {#</nav>#}
     {#<!-- .nav-single -->#}
-
-
         <!-- #comments -->
         <div id="comments" class="comments-area">
             <h2 class="comments-title"><i class="icon-chat"></i> <a href="#disqus_thread" style="text-transform: uppercase;color: #345 !important;"></a></h2>
@@ -159,3 +151,12 @@
         <!-- #comments -->
     </div>
 {% endblock content %}
+
+{% block foot_script_assetic %}
+    {{ parent() }}
+    {% javascripts  output='js/blog.js'
+    '@AppMainBundle/Resources/public/js/prettify.js'
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock foot_script_assetic %}

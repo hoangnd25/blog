@@ -1,0 +1,17 @@
+services:
+    app.admin.post:
+        class: App\BlogBundle\Admin\PostAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Post" }
+        arguments:
+            - ~
+            - App\BlogBundle\Entity\Post
+            - ~
+    app.admin.tag:
+        class: App\BlogBundle\Admin\TagAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Tag" }
+        arguments:
+            - ~
+            - App\BlogBundle\Entity\Tag
+            - ~
