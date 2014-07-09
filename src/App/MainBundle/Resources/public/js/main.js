@@ -488,7 +488,7 @@ var $container, $blog_container;
 	// CHANGE PAGE
 	function setActivePage() {
 		
-			$('.page').removeClass('active').hide();
+			$('.page').removeClass('active');
 			var path = $.address.path();
 			path = path.slice(1, path.length);
 			path = giveDetailUrl() != -1 ? portfolioKeyword : path;
@@ -498,11 +498,12 @@ var $container, $blog_container;
 				$.address.path(path);
 				return false;
 				}
-			
-			// show page
-			$('#'+ path).fadeIn();
-			$('.page.active').hide();
+
+//			// show page
+//			$('#'+ path).fadeIn();
+//			$('.page.active').hide();
 			$('#'+ path).addClass('active');
+            $('.wrapper .p-overlay').show().fadeOut(500);
 			setCurrentMenuItem();
 			
 			if(path.indexOf(portfolioKeyword) != -1) {
