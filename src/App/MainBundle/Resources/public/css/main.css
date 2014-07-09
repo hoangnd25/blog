@@ -510,9 +510,11 @@ a.more-link,
 	}
 .wrapper > section {
  	z-index: 1; min-height: 100%; margin: 0 auto; padding: 0 0 30px; width: 100%; background: #fff;
-    display: none;
 	}
-.wrapper > section.active{
+.classic-layout .wrapper > section{
+    display: none;
+}
+.classic-layout .wrapper > section.active{
     display: block;
 }
 .vs-triplelayout .wrapper > section {

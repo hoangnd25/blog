@@ -576,7 +576,7 @@ var $container, $blog_container;
 		var columns, columnWidth;
 		var viewports = [ {
 				width : 1300,
-				columns : itemPerRow
+				columns : itemPerRow-1
 			}, {
 				width : 900,
 				columns : itemPerRow-1

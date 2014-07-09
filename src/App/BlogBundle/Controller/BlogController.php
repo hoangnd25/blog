@@ -56,7 +56,7 @@ class BlogController extends Controller
             ->orderBy('p.created','desc')
         ;
         $query = $qb->getQuery();
-        $query->setMaxResults(8);
+        $query->setMaxResults(6);
         $posts = $query->getResult(Query::HYDRATE_ARRAY);
 
         return array('posts'=> $posts);
