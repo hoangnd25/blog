@@ -8,3 +8,7 @@ services:
         class: Symfony\Cmf\Bundle\SeoBundle\Extractor\ExtrasExtractor
         tags:
             -  { name: cmf_seo.extractor }
+    app.sitemap.listener:
+            class: App\MainBundle\EventListener\SitemapListener
+            arguments: [@router,@doctrine]
+            tags: [{name: "presta.sitemap.listener"}]

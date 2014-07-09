@@ -36,6 +36,7 @@ class AppKernel extends Kernel
             new Symfony\Cmf\Bundle\SeoBundle\CmfSeoBundle(),
             new Trsteel\CkeditorBundle\TrsteelCkeditorBundle(),
             new Burgov\Bundle\KeyValueFormBundle\BurgovKeyValueFormBundle(),
+            new Presta\SitemapBundle\PrestaSitemapBundle(),
 
             new App\BlogBundle\AppBlogBundle(),
             new App\MainBundle\AppMainBundle(),
