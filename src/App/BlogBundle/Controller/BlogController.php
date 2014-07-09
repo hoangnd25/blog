@@ -32,8 +32,9 @@ class BlogController extends Controller
             ->setParameter('slug',$slug)
         ;
         $query = $qb->getQuery();
-        $post = $query->getResult(Query::HYDRATE_ARRAY);
+        $post = $query->getResult();
         $post = reset($post);
+        $this->get('cmf_seo.presentation')->updateSeoPage($post);
         return array('post'=> $post);
     }
 

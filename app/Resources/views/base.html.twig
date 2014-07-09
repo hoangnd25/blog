@@ -26,6 +26,8 @@
             {% endif %}
         {% endblock dns_prefetch %}
 
+        {{ sonata_seo_title() }}
+
         {# IE10 does not support plugins, such as Flash, in Metro Mode.
            If your site requires plugins, you can let users know that via the
            X-UA-Compatible meta element, which will prompt them to switch to Desktop Mode.
@@ -37,65 +39,10 @@
            https://github.com/h5bp/html5-boilerplate/issues/824 #}
         <meta name="viewport" content="width=device-width" />
 
-        {% set meta_robots = '' %}
-        {% set metatitle = '' %}
-        {% if meta is defined %}
-            {% if meta.description is defined %}
-                <meta name="description" content="{{ meta['description'] }}" />
-            {% endif %}
-            {% if meta.keywords is defined %}
-                <meta name="keywords" content="{{ meta['keywords'] }}" />
-            {% endif %}
-            {% if meta.author_name is defined %}
-                <meta name="author" content="{{ meta['author_name'] }}" />
-            {% endif %}
-            {% if meta.author_url is defined and meta.author_name is defined %}
-                {# example: href="/humans.txt" #}
-                <link rel="author" href="{{ meta['author_url'] }}" title="{{ meta['author_name'] }}" />
-            {% endif %}
-            {% if meta.title is defined %}
-                {% set metatitle = meta.title %}
-            {% endif %}
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}" />
 
-            {# TODO: to be removed as HTML5 has no such tag
-            <meta name="title" content="{{ meta_title|default('') }}"> #}
-
-            {# TODO: read more about canonical urls and then decide whether enable this part or remove
-               http://html5boilerplate.com/docs/html-head/#canonical-url
-            <link rel="canonical" href=""> #}
-
-            {# TODO: Official short link, poorly supported now
-            <link rel="shortlink" href="h5bp.com"> #}
-
-            <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
-            <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}" />
-
-            {# TODO: allow BOTs see SITEMAP #}
-            {% if meta['sitemap'] is defined %}
-                <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ meta['sitemap'] }}" />
-            {% endif %}
-
-            {# TODO: Feeds RSS & ATOM #}
-            {% if meta['feed_atom'] is defined %}
-                <link rel="alternate" type="application/atom+xml" title="Atom" href="{{ meta['feed_atom'] }}" />
-            {% endif %}
-            {% if meta['feed_rss'] is defined %}
-                <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ meta['feed_rss'] }}" />
-            {% endif %}
-
-            {# TODO: allow changing this values from controller scope #}
-            {% if meta['noindex'] %}
-                {% set meta_robots = 'noindex,' %}
-            {% endif %}
-            {% if meta['nofollow'] %}
-                {% set meta_robots = meta_robots ~ 'nofollow' %}
-            {% else %}
-                {% set meta_robots = meta_robots ~ 'follow' %}
-            {% endif %}
-        {% endif %}
-
-        <meta name="robots" content="{{ meta_robots }}" />
-        <title>{% block title%}{{ metatitle }}{% endblock %}</title>
+        {{ sonata_seo_metadatas() }}
 
         {% if google['wt'] is defined %}
             <meta name="google-site-verification" content="{{ google['wt'] }}" />

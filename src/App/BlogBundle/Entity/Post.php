@@ -5,6 +5,11 @@ namespace App\BlogBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Cmf\Bundle\SeoBundle\Model\SeoMetadataInterface;
+use Symfony\Cmf\Bundle\SeoBundle\SeoAwareInterface;
+use Symfony\Cmf\Bundle\SeoBundle\Extractor\DescriptionReadInterface;
+use Symfony\Cmf\Bundle\SeoBundle\Extractor\ExtrasReadInterface;
+use Symfony\Cmf\Bundle\SeoBundle\Extractor\KeywordsReadInterface;
 
 /**
  * Post
@@ -12,7 +17,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table()
  * @ORM\Entity
  */
-class Post
+class Post implements SeoAwareInterface, DescriptionReadInterface, ExtrasReadInterface, KeywordsReadInterface
 {
     /**
      * @var integer
@@ -75,6 +80,11 @@ class Post
      * @ORM\Column(name="body", type="text")
      */
     private $body;
+
+    /**
+     * @ORM\Column(type="object", nullable= true)
+     */
+    protected $seoMetadata;
 
     function __construct()
     {
@@ -233,5 +243,81 @@ class Post
     {
         return $this->slug;
     }
+
+    /**
+     * Gets the SEO metadata for this content.
+     *
+     * @return SeoMetadataInterface
+     */
+    public function getSeoMetadata()
+    {
+        return $this->seoMetadata;
+    }
+
+    /**
+     * Sets the SEO metadata for this content.
+     *
+     * This method is used by a listener, which converts the metadata to a
+     * plain array in order to persist it and converts it back when the content
+     * is fetched.
+     *
+     * @param array|SeoMetadataInterface $metadata
+     */
+    public function setSeoMetadata($metadata)
+    {
+        $this->seoMetadata = $metadata;
+    }
+
+    /**
+     * Provide a description of this page to be used in SEO context.
+     *
+     * @return string
+     */
+    public function getSeoDescription()
+    {
+        return $this->getIntro();
+    }
+
+    /**
+     * Provides a list of extras as key-values pairs
+     * for this page's SEO context and meta type property.
+     *
+     * Different types should be grouped in different arrays.
+     *
+     * Example return:
+     *  array(
+     *       'property'   => array('og:title' => 'Extra Title'),
+     *       'name'       => array('robots' => 'index, follow'),
+     *       'http-equiv' => array('Content-Type' => 'text/html; charset=utf-8'),
+     *   )
+     *
+     * @return array
+     */
+    public function getSeoExtras()
+    {
+        return array(
+            'property' => array(
+                'og:title'       => $this->title,
+                'og:description' => $this->intro,
+            ),
+        );
+    }
+
+
+    /**
+     * Provides a list of keywords for this page to be
+     * used in SEO context.
+     *
+     * @return string|array
+     */
+    public function getSeoKeywords()
+    {
+        $keywords = array();
+            foreach ($this->getTags() as $tag){
+                $keywords[] = $tag->getName();
+            }
+        return  $keywords;
+    }
+
 
 }

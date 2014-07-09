@@ -7,9 +7,24 @@ use App\BlogBundle\Entity\Tag;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class PostFixtures extends AbstractFixture implements OrderedFixtureInterface
+class PostFixtures extends AbstractFixture implements OrderedFixtureInterface,ContainerAwareInterface
 {
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -38,6 +53,9 @@ class PostFixtures extends AbstractFixture implements OrderedFixtureInterface
                 $post->getTags()->add($tag);
 
             }
+
+            $seoPresentation = $this->container->get('cmf_seo.presentation');
+            $seoPresentation-> updateSeoPage($post);
 
             $manager->persist($post);
         }

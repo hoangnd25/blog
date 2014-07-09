@@ -31,7 +31,8 @@
         "sonata-project/doctrine-orm-admin-bundle": "2.3.*@dev",
         "sonata-project/jquery-bundle": "1.10.*@dev",
         "stof/doctrine-extensions-bundle": "~1.1@dev",
-        "raulfraile/ladybug-bundle": "dev-master"
+        "raulfraile/ladybug-bundle": "dev-master",
+        "symfony-cmf/seo-bundle": "1.1.*@dev"
     },
     "scripts": {
         "post-install-cmd": [
