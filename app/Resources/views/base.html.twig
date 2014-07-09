@@ -86,7 +86,7 @@
             <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
             {% endstylesheets %}
 
-            {% javascripts output='js/IE.js' filter='?yui_js'
+            {% javascripts output='js/IE.js' filter=''
             '@AppMainBundle/Resources/public/js/html5shiv.js'
                 '@AppMainBundle/Resources/public/js/respond.min.js'
                 '@AppMainBundle/Resources/public/js/selectivizr-min.js'
@@ -228,7 +228,7 @@
         {% endif %}
 
         {% block foot_script_assetic %}
-        
+
             {% javascripts  output='js/main.js' filter='?yui_js'
             '@MopaBootstrapBundle/Resources/public/bootstrap/js/tooltip.js'
             '@MopaBootstrapBundle/Resources/public/bootstrap/js/*.js'
