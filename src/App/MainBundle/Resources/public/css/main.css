@@ -2829,3 +2829,14 @@ a.more-link:hover,
 .navigation > div{
     width: 100%;
 }
+.alert-dismissable{
+    margin-top: 20px;
+}
+.alert-dismissable .close{
+    font-size: 30px;
+    top:-5px;
+    right: 0px;
+}
+.alert-dismissable .close:hover{
+    background-color: transparent;
+}

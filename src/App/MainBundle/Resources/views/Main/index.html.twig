@@ -125,9 +125,7 @@
 
                     <!-- .contact-form -->
                     <div class="contact-form">
-                        <form id="contact-form" action="send-mail.php" method="post">
-                            <!-- enter mail subject here -->
-                            <input type="hidden" name="subject" id="subject" value="You have a new message from cvCard!">
+                        <form id="contact-form" action="{{ path('app_user_contact_sendmessage') }}" method="post">
                             <p>
                                 <label for="name">NAME</label>
                                 <input type="text" name="name" id="name" class="required">
@@ -140,6 +138,7 @@
                                 <label for="message">MESSAGE</label>
                                 <textarea name="message" id="message" class="required"></textarea>
                             </p>
+                            {{ render(controller('AppUserBundle:Contact:humanTest')) }}
                             <p>
                                 <input type="submit" class="submit button primary" value="SEND">
                             </p>

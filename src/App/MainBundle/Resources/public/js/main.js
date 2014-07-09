@@ -253,6 +253,7 @@ var $container, $blog_container;
 					$(this).validate();
 				});
 		}
+        $('#contact-form').validate();
 		// ------------------------------
 		
 		
