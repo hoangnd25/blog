@@ -1,0 +1,25 @@
+services:
+    app.admin.personal_detail:
+        class: App\UserBundle\Admin\PersonalDetailAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Personal Info", label: "Personal details" }
+        arguments:
+            - ~
+            - App\UserBundle\Entity\PersonalDetail
+            - ~
+    app.admin.skill:
+        class: App\UserBundle\Admin\SkillAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Personal Info", label: "Skills" }
+        arguments:
+            - ~
+            - App\UserBundle\Entity\Skill
+            - ~
+    app.admin.history:
+        class: App\UserBundle\Admin\HistoryAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Personal Info", label: "History" }
+        arguments:
+            - ~
+            - App\UserBundle\Entity\History
+            - ~
