@@ -31,6 +31,7 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
 
             new App\BlogBundle\AppBlogBundle(),
             new App\MainBundle\AppMainBundle(),

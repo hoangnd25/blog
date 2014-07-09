@@ -31,6 +31,14 @@ class PostFixtures extends AbstractFixture implements OrderedFixtureInterface
             maiores ullam minim scelerisque ante lacus, culpa pellentesque malesuada praesent habitasse ante,
             quibusdam quae autem, quasi posuere iaculis facilis, suscipit, provident? Alias eveniet repellendus ultrices,
             aliquip ullam, risus tempore nec, rem dignissimos nisl habitasse? Porro.');
+
+            if($i==1){
+                $tag = new Tag('test');
+                $tag->getPosts()->add($post);
+                $post->getTags()->add($tag);
+
+            }
+
             $manager->persist($post);
         }
 

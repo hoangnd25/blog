@@ -1,0 +1,43 @@
+{% extends '::base.html.twig' %}
+{% block html_class %}single-page-layout{% endblock html_class %}
+
+{% block nav %}
+    <ul class="vs-nav">
+        <li><a href="{{ path('index') }}"><i title="go to home" class="icon-home-1 tooltipster" data-tooltip-pos="left"></i></a></li>
+        <li><a><i title="search" class="search-link fa fa-search tooltipster" data-tooltip-pos="right"></i></a></li>
+    </ul>
+
+{% endblock nav %}
+
+{% block content %}
+    <div class="blog-posts readable-content">
+    {% for post in posts %}
+        <!-- .post -->
+        <article class="post type-post hentry">
+            <!-- .entry-meta -->
+            <footer class="entry-meta">
+                <span class="post-format"></span>
+                <span title="{{ post.created | date('Y') }}" class="entry-date"><span class="day">{{ post.created | date('d') }}</span>{{ post.created | date('M') }}</span>
+            </footer>
+            <!-- .entry-meta -->
+            <!-- .entry-header -->
+            <header class="entry-header">
+                <h1 class="entry-title">
+                    <a href="{{ path('app_blog_blog_show',{'slug':post.slug}) }}" rel="bookmark">{{ post.title }}</a>
+                </h1>
+            </header>
+            <!-- .entry-header -->
+            <!-- .entry-content -->
+            <div class="entry-content">
+                {{ post.intro | raw }}
+                <a href="{{ path('app_blog_blog_show',{'slug':post.slug}) }}" class="more-link">Continue reading <span class="meta-nav">→</span></a>
+            </div>
+            <!-- .entry-content -->
+        </article>
+        <!-- .post -->
+    {% endfor %}
+        <div class="navigation">
+            {{ knp_pagination_render(posts) }}
+        </div>
+    </div>
+{% endblock content %}

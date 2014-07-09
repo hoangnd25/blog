@@ -80,7 +80,7 @@ var $container, $blog_container;
 		
 		// ------------------------------
 		// SEARCH
-		$('.search-link').click(function() {
+		$('.search-link').unbind("click").click(function() {
 			$(this).toggleClass('active');
 			$('.header-search').slideToggle();
 		});
@@ -303,7 +303,9 @@ var $container, $blog_container;
 			}
 		  
 		}
-		google.maps.event.addDomListener(window, 'load', initializeMap);
+        if(typeof google != 'undefined'){
+            google.maps.event.addDomListener(window, 'load', initializeMap);
+        }
 		// ------------------------------
 		
 		

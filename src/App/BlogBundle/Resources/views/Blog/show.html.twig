@@ -3,14 +3,8 @@
 
 {% block nav %}
     <ul class="vs-nav">
-
-        <!-- InstanceBeginEditable name="Menu-Content" -->
-
-        <li><a href="blog.html"><i title="back to blog" class="icon-left-open tooltipster" data-tooltip-pos="left"></i></a></li>
+        <li><a href="{{ path('app_blog_blog_list') }}"><i title="back to blog" class="icon-left-open tooltipster" data-tooltip-pos="left"></i></a></li>
         <li><a href="{{ path('index') }}"><i title="go to home" class="icon-home-1 tooltipster" data-tooltip-pos="right"></i></a></li>
-
-        <!-- InstanceEndEditable -->
-
     </ul>
 
 {% endblock nav %}
@@ -37,7 +31,7 @@
 
             <span class="posted-by">
                 by
-                <a class="url fn n" href="#" title="View all posts by ahmetsali" rel="author">Albert Einstein</a>
+                <a class="url fn n" href="#" title="View all posts by Hoang ND" rel="author">Hoang ND</a>
             </span>
 
             <!--<span class="edit-link">
@@ -77,13 +71,16 @@
             {#</div>#}
             {#<!-- .related-posts -->#}
 
-            <!-- .entry-meta -->
-
-            <footer class="entry-meta">
-                <h3>TAGS</h3>
-                <a href="#" rel="tag">design</a> <a href="#" rel="tag">responsive</a> <a href="#" rel="tag">think</a>
-            </footer>
-            <!-- .entry-meta -->
+            {% if post.tags is not empty %}
+                <!-- .entry-meta -->
+                <footer class="entry-meta">
+                    <h3>TAGS</h3>
+                    {% for tag in post.tags %}
+                    <a href="#" rel="tag">{{ tag.name }}</a>
+                    {% endfor %}
+                </footer>
+                <!-- .entry-meta -->
+            {% endif %}
 
 
 

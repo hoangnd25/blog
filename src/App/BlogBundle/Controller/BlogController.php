@@ -23,8 +23,9 @@ class BlogController extends Controller
 
         $qb = $em->createQueryBuilder();
         $qb
-            ->select('p')
+            ->select('p,t')
             ->from('AppBlogBundle:Post', 'p')
+            ->leftJoin('p.tags','t')
             ->where('p.published = :published')
             ->setParameter('published',true)
             ->andWhere('p.slug = :slug')
@@ -60,5 +61,36 @@ class BlogController extends Controller
         $posts = $query->getResult(Query::HYDRATE_ARRAY);
 
         return array('posts'=> $posts);
+    }
+
+    /**
+     * @Route("blog")
+     * @Template()
+     */
+    public function listAction()
+    {
+        /**
+         * @var EntityManager $em
+         */
+        $em = $this->getDoctrine()->getManager();
+
+        $qb = $em->createQueryBuilder();
+        $qb
+            ->select('p.title,p.intro,p.created,p.slug,p.id')
+            ->from('AppBlogBundle:Post', 'p')
+            ->where('p.published = :published')
+            ->setParameter('published',true)
+            ->orderBy('p.created','desc')
+        ;
+        $query = $qb->getQuery();
+        $posts = $query->getResult(Query::HYDRATE_ARRAY);
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $posts,
+            $this->get('request')->query->get('page', 1)/*page number*/,
+            5/*limit per page*/
+        );
+
+        return array('posts'=> $pagination);
     }
 }

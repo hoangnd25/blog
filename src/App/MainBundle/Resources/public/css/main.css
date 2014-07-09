@@ -2071,14 +2071,20 @@ a.more-link:hover {
 	}
 
 /* PAGINATION */
+.blog-posts .navigation{
+    margin-left: 90px;
+}
 .navigation,
 .post-pagination {
  	padding: 3em 0
 	}
+    .navigation .current{
+        color: #ccc;
+    }
 	.navigation > div {
  		width: 50%; float: left;
 		}
-	.navigation a {
+	.navigation a, .navigation .current{
  		display: inline-block; padding: 1.5em 2.0em; border: 2px solid #DDE4E6; border-radius: 4px; font-weight: 800; text-transform: uppercase;
 		}
 	.navigation .nav-next {
@@ -2787,7 +2793,7 @@ a.more-link:hover,
 .flex-control-paging li a.flex-active,
 .mejs-controls .mejs-time-rail .mejs-time-current,
 .mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-current {
- 	background: #096
+ 	background: #096 !important;
 	}
 .entry-title a:hover,
 .portfolio-nav a.button:hover,
