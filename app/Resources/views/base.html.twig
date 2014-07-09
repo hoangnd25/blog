@@ -86,7 +86,7 @@
             <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
             {% endstylesheets %}
 
-            {% javascripts output='js/IE.js' filter=''
+            {% javascripts output='js/IE.js' filter='?yui_js'
             '@AppMainBundle/Resources/public/js/html5shiv.js'
                 '@AppMainBundle/Resources/public/js/respond.min.js'
                 '@AppMainBundle/Resources/public/js/selectivizr-min.js'
@@ -228,35 +228,24 @@
         {% endif %}
 
         {% block foot_script_assetic %}
-
-            {% javascripts  output='js/bootstrap.js' filter='?yui_js'
+        
+            {% javascripts  output='js/main.js' filter='?yui_js'
             '@MopaBootstrapBundle/Resources/public/bootstrap/js/tooltip.js'
             '@MopaBootstrapBundle/Resources/public/bootstrap/js/*.js'
             '@MopaBootstrapBundle/Resources/public/js/mopabootstrap-collection.js'
             '@MopaBootstrapBundle/Resources/public/js/mopabootstrap-subnav.js'
-            %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-            {% endjavascripts %}
-
-            {% javascripts  output='js/main1.js' filter=''
             '@AppMainBundle/Resources/public/js/jquery-migrate-1.2.1.min.js'
             '@AppMainBundle/Resources/public/js/jquery.address-1.5.min.js'
+            '@AppMainBundle/Resources/public/js/triple.layout.js'
+            '@AppMainBundle/Resources/public/js/smoothscroll.js'
+            '@AppMainBundle/Resources/public/js/nprogress.js'
+            '@AppMainBundle/Resources/public/js/fastclick.js'
             '@AppMainBundle/Resources/public/js/jquery.imagesloaded.min.js'
             '@AppMainBundle/Resources/public/js/jquery.isotope.min.js'
             '@AppMainBundle/Resources/public/js/jquery.validate.min.js'
             '@AppMainBundle/Resources/public/js/jquery.uniform.min.js'
             '@AppMainBundle/Resources/public/js/jquery.fancybox-1.3.4.pack.js'
             '@AppMainBundle/Resources/public/js/jquery.tooltipster.min.js'
-            %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-            {% endjavascripts %}
-
-
-            {% javascripts  output='js/main2.js' filter='?yui_js'
-            '@AppMainBundle/Resources/public/js/triple.layout.js'
-            '@AppMainBundle/Resources/public/js/smoothscroll.js'
-            '@AppMainBundle/Resources/public/js/nprogress.js'
-            '@AppMainBundle/Resources/public/js/fastclick.js'
             '@AppMainBundle/Resources/public/js/classie.js'
             '@AppMainBundle/Resources/public/js/main.js'
             %}
