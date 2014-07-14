@@ -673,7 +673,7 @@ h2 i[class^="icon-"], h2 i[class*=" icon-"], h2 i.fa {
 	text-align: center; padding: 0 0 1em 0;
 	}
 	.intro h2 {
-	    font-size: 2.0em; font-weight: 300; line-height: 1.4;
+	    font-size: 2em; font-weight: 300; line-height: 1.4;
 		}
 	.intro h2 strong {
 		letter-spacing: -2px; font-weight: 800;
