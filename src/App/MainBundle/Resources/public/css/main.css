@@ -2081,7 +2081,7 @@ a.more-link:hover {
 		}
 	.navigation a, .navigation .current{
  		display: inline-block;
-        padding: 1.5em 2.0em !important;
+        padding: 1.5em 2em !important;
         border: 2px solid #DDE4E6; border-radius: 4px; font-weight: 800; text-transform: uppercase;
             @media (max-width: 767px){
             padding: 0.8em 1em !important;
