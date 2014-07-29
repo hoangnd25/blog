@@ -2840,3 +2840,9 @@ a.more-link:hover,
 .alert-dismissable .close:hover{
     background-color: transparent;
 }
+
+.drop-cap pre:first-letter{
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+}
