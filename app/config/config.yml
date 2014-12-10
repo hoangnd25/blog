@@ -126,6 +126,8 @@ mopa_bootstrap:
         dns_prefetch:
               - '//ajax.googleapis.com'
               - '//maxcdn.bootstrapcdn.com'
+        google:
+            analytics:            ~
 
 
 stof_doctrine_extensions:
