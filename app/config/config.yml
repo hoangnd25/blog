@@ -210,3 +210,4 @@ trsteel_ckeditor:
     external_plugins:
         pbckcode:
             path: bundles/appmain/js/ckeditor/plugins/pbckcode
+    custom_config: bundles/appmain/js/ckeditor/config.js
