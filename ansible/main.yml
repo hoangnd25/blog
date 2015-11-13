@@ -1,0 +1,31 @@
+---
+# Initialize tasks
+- hosts: all
+  tasks:
+    - include: tasks/initialize.yml
+
+# Pre deployment tasks
+- hosts: hoangnd.me
+  tasks:
+    - include: tasks/prod.yml
+
+# Main tasks
+- hosts: all
+  sudo: yes
+  roles:
+    - fpm
+    - nodejs
+
+  tasks:
+    - name: install npm packages
+      sudo: yes
+      npm: name={{item}} global=yes
+      with_items:
+        - less@1.7.4
+
+    - include: tasks/dir.yml
+    - include: tasks/mysql.yml
+    - include: tasks/zsh.yml
+    - include: tasks/nginx.yml
+    - include: tasks/composer.yml
+    - include: tasks/webapp.yml

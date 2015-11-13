@@ -1,0 +1,32 @@
+---
+- name: create dev dirs
+  sudo: yes
+  sudo_user: "{{project_user}}"
+  file: path={{item}} state=directory
+  with_items: dev_dirs
+  when: env == 'dev'
+
+- name: create out directory
+  sudo: yes
+  file: path={{item}} state=directory owner=www-data group={{project_user}} mode=0775
+  with_items: out_dirs
+  when: not vagrant_env
+
+- name: create out dir
+  sudo: yes
+  sudo_user: "{{project_user}}"
+  file: path={{item}} state=directory
+  with_items: out_dirs
+  when: vagrant_env
+
+- name: set dir permission 1
+  sudo: yes
+  shell: 'setfacl -R -m u:www-data:rwX -m u:{{project_user}}:rwX {{item}}'
+  with_items: out_dirs
+  when: not vagrant_env
+
+- name: set dir permission 2
+  sudo: yes
+  shell: 'setfacl -dR -m u:www-data:rwX -m u:{{project_user}}:rwX {{item}}'
+  with_items: out_dirs
+  when: not vagrant_env

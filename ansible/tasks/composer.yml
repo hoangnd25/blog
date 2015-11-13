@@ -1,0 +1,16 @@
+---
+- name: Check if composer exists.
+  stat: path={{site_dir}}/composer.phar
+  register: composer_file
+
+- name: Install composer.
+  sudo: yes
+  sudo_user: "{{project_user}}"
+  get_url: url=https://getcomposer.org/composer.phar dest={{site_dir}} mode=0755 validate_certs=no
+  when: composer_file.stat.exists == false
+
+- name: Update composer if already exists.
+  sudo: yes
+  sudo_user: "{{project_user}}"
+  shell: "{{site_dir}}/composer.phar selfupdate"
+  when: composer_file.stat.exists == true

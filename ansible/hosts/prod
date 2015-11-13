@@ -1,0 +1,5 @@
+[hoangnd.me]
+hoangnd.me
+
+[hoangnd.me:vars]
+ansible_ssh_user=root

@@ -1,16 +1,15 @@
 parameters:
-    database_driver: pdo_sqlite
-    database_host: 127.0.0.1
-    database_port:     ~
-    database_name: "%kernel.root_dir%/data/data.sqlite"
-    database_path: "%kernel.root_dir%/data/data.sqlite"
-    database_user:     root
-    database_password: ~
+    database_driver:    pdo_mysql
+    database_host:      127.0.0.1
+    database_port:      ~
+    database_name:      blog
+    database_user:      root
+    database_password:  ~
 
-    mailer_transport:  gmail
-    mailer_host:       ~
-    mailer_user:       contact@hoangnd.me
-    mailer_password:   ~
+    mailer_transport:   gmail
+    mailer_host:        ~
+    mailer_user:        contact@hoangnd.me
+    mailer_password:    ~
 
-    locale:            en
-    secret:            ThisTokenIsNotSoSecretChangeIt
+    locale:             en
+    secret:             ThisTokenIsNotSoSecretChangeIt

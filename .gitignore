@@ -23,3 +23,5 @@ web/css/
 .buildpath
 .project
 .settings/
+.cache/
+.vagrant/

@@ -18,12 +18,12 @@ class PersonalDetail
     protected $id;
 
     /**
-     * @ORM\Column(length=60)
+     * @ORM\Column(length=60, name="detail_key")
      */
     protected $key;
 
     /**
-     * @ORM\Column(length=255)
+     * @ORM\Column(length=255, name="detail_value")
      */
     protected $value;
 

@@ -1,0 +1,19 @@
+---
+- name: install oh my zsh
+  sudo: yes
+  sudo_user: "{{project_user}}"
+  git: >-
+    repo=https://github.com/robbyrussell/oh-my-zsh.git
+    dest=~/.oh-my-zsh
+    update=no
+
+- name: change user shell to zsh
+  sudo: yes
+  user: name={{project_user}} shell=/usr/bin/zsh
+
+- name: add .zshrc
+  sudo: yes
+  sudo_user: "{{project_user}}"
+  template: >-
+    src=templates/.zshrc
+    dest=~/.zshrc

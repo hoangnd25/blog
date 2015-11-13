@@ -31,13 +31,13 @@ class Post implements SeoAwareInterface, DescriptionReadInterface, ExtrasReadInt
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255)
+     * @ORM\Column(name="title", type="string", length=200)
      */
     private $title;
 
     /**
      * @Gedmo\Slug(fields={"title"})
-     * @ORM\Column(length=300, unique=true, nullable= true))
+     * @ORM\Column(length=255, unique=true, nullable= true))
      */
     private $slug;
 

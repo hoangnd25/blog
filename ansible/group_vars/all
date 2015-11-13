@@ -1,0 +1,36 @@
+# -*- mode: yaml -*-
+---
+# general
+project_name: blog
+project_user: "website_{{project_name}}"
+log_dir: "{{site_dir}}/logs"
+env: dev
+vagrant_env: false
+
+# nginx
+nginx_log_dir: "/var/log/nginx"
+nginx_access_log: "{{nginx_log_dir}}/{{project_name}}_access.log"
+nginx_error_log: "{{nginx_log_dir}}/{{project_name}}_error.log"
+
+# directory
+dev_dirs:                       # dir used for dev
+  - "{{log_dir}}"
+
+out_dirs:                       # var dir
+  - "{{site_dir}}/app/logs"
+  - "{{site_dir}}/app/cache"
+
+secret: 12mn3b412j23hn
+
+mysql:
+  host: 127.0.0.1
+  port: 3306
+  root_db_pass: 123456
+  db: blog
+  user: blog
+  password: 654321
+
+mailer:
+  username: dummy.mailer.hoangnd@gmail.com
+  password: 123456
+

@@ -1,0 +1,13 @@
+---
+- name: create dir for yummi website
+  sudo: yes
+  file: path={{site_dir}} state=directory owner={{project_user}}
+
+- name: clone the project
+  sudo: yes
+  sudo_user: "{{project_user}}"
+  git: >-
+    repo=https://github.com/hoangnd25/blog.git
+    dest={{site_dir}}
+    accept_hostkey=yes
+    force=yes
