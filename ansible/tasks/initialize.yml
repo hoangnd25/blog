@@ -25,7 +25,6 @@
     - php5-mongo
     - php5-mysql
     - php5-gd
-    - supervisor
 
 - name: remove apache
   sudo: yes

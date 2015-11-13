@@ -1,0 +1,5 @@
+#!/bin/bash
+
+source $(dirname $0)/check-path
+
+ansible-playbook -K -i $SCRIPT_PATH/../ansible/hosts/prod $SCRIPT_PATH/../ansible/main.yml --ask-pass --extra-vars "env=prod"

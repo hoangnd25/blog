@@ -1,0 +1,4 @@
+#!/bin/bash
+
+SCRIPT_PATH=$(dirname `which $0`)
+chmod -x $SCRIPT_PATH/../ansible/hosts/*
